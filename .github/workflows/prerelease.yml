@@ -15,6 +15,17 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: 16.9
+      - name: Cache node modules
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
       - name: install dependencies
         run: npm install
       - name: update npm
@@ -29,4 +40,5 @@ jobs:
           automatic_release_tag: latest
           prerelease: true
           title: Development Build
-          files: content_authoring.dmg
+          files: |
+            ./apps/content-authoring/out/make/content_authoring.dmg
