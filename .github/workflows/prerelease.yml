@@ -19,14 +19,13 @@ jobs:
         run: npm install
       - name: update npm
         run: npm install -g npm@latest
-      - name: publish
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run publish:scrowl
       - uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           automatic_release_tag: latest
           prerelease: true
           title: Development Build
-          files: content_authoring.dmg
+      - name: publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run publish:scrowl
