@@ -6,7 +6,10 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "start": "npm run start --workspace=apps/content-authoring"
+    "start:scrowl": "npm run start --workspace=apps/content-authoring",
+    "make:scrowl": "npm run make --workspace=apps/content-authoring",
+    "package:scrowl": "npm run package --workspace=apps/content-authoring",
+    "publish:scrowl": "npm run publish --workspace=apps/content-authoring"
   },
   "repository": "git+https://github.com/aubeOSG/git-actions-check.git",
   "author": "aubeOSG <caube@osg.ca>",
