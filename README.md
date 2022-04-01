@@ -1,1 +1,1 @@
-# gti-actions-check
+# Git Actions Check
