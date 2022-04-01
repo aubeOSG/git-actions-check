@@ -1,11 +1,11 @@
-name: pre-release
+name: release
 on:
-  push:
-    branches:
-      - main
+  release:
+    types:
+      - created
 
 jobs:
-  pre-release:
+  release:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -30,15 +30,7 @@ jobs:
         run: npm install
       - name: update npm
         run: npm install -g npm@latest
-      - name: Publish Pre-release
+      - name: Publish Distributables
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run publish:scrowl
-      - uses: marvinpinto/action-automatic-releases@latest
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          automatic_release_tag: latest
-          prerelease: true
-          title: Development Build
-          files: |
-            ./apps/content-authoring/out/make/content_authoring.dmg
