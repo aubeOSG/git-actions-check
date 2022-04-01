@@ -73,8 +73,6 @@
     "@electron-forge/maker-squirrel": "^6.0.0-beta.63",
     "@electron-forge/maker-zip": "^6.0.0-beta.63",
     "@electron-forge/publisher-github": "^6.0.0-beta.63",
-    "core-js": "^3.21.1",
-    "core-util-is": "^1.0.3",
     "electron": "18.0.1",
     "electron-prebuilt-compile": "8.2.0"
   }
