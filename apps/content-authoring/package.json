@@ -32,7 +32,8 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "content_authoring"
+            "name": "content_authoring",
+            "description": "A tool to build accessible content for Learning Management Systems"
           }
         },
         {
