@@ -9,7 +9,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, windows-2022]
+        os: [macos-latest]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@master
@@ -29,5 +29,3 @@ jobs:
           automatic_release_tag: latest
           prerelease: true
           title: Development Build
-          files: |
-            content_authoring.*
