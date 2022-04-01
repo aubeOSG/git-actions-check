@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-node@master
         with:
           node-version: 16.9
-      - name: Cache node modules
+      - name: Cache Node Modules
         uses: actions/cache@v3
         env:
           cache-name: cache-node-modules
@@ -26,11 +26,11 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - name: install dependencies
+      - name: Install Dependencies
         run: npm install
       - name: update npm
         run: npm install -g npm@latest
-      - name: publish
+      - name: Publish Pre-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run publish:scrowl
