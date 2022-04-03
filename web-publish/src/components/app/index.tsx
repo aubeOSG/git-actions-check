@@ -10,7 +10,6 @@ import pageHome from '../../pages/home/index'
 const basename = '/git-actions-check'
 
 const ReRoute = () => {
-  console.log('rerouting')
   return (
     <Router>
       <Routes>
@@ -21,7 +20,6 @@ const ReRoute = () => {
 }
 
 const AppRoutes = () => {
-  console.log('app routing')
   return (
     <Router basename={basename}>
       <main>
@@ -37,7 +35,7 @@ const AppRoutes = () => {
 export const getApp = () => {
   const pathname = window.location.pathname
   const isReRouted = pathname === '/'
-  console.log('pathname', pathname)
+
   return {
     Routes: () => {
       return isReRouted ? <ReRoute /> : <AppRoutes />
