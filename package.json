@@ -8,6 +8,7 @@
     "move:distributables": "node ./scripts/pipeline/cmd.move-distributables.js",
     "start:scrowl": "npm run start --workspace=apps/content-authoring",
     "make:scrowl": "npm run make --workspace=apps/content-authoring && npm run build --workspace=web-publish",
+    "build": "npm run build --workspace=web-publish",
     "postmake:scrowl": "npm run move:distributables",
     "package:scrowl": "npm run package --workspace=apps/content-authoring",
     "publish:scrowl": "npm run publish --workspace=apps/content-authoring"
