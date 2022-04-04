@@ -28,8 +28,6 @@ jobs:
             ${{ runner.os }}-
       - name: Install Dependencies
         run: npm install
-      - name: update npm
-        run: npm install -g npm@latest
       - name: Publish Distributables
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

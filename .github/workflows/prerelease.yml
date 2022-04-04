@@ -41,7 +41,7 @@ jobs:
           files: |
             ./apps/content-authoring/out/make/content_authoring.dmg
       - name: Build Static Site
-        run: npm run build
+        run: npm run build:web
       - name: Move Distributables
         run: npm run move:distributables
       - name: Publish Github Page
