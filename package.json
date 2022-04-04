@@ -6,13 +6,13 @@
   "type": "module",
   "scripts": {
     "move:distributables": "node ./scripts/pipeline/cmd.move-distributables.js",
-    "start:scrowl": "npm run start --workspace=apps/content-authoring",
-    "make:scrowl": "npm run make --workspace=apps/content-authoring && npm run build --workspace=web-publish",
-    "build": "npm run build --workspace=web-publish",
+    "start:scrowl": "npm run start -w apps/content-authoring",
+    "build:scrowl": "npm run make -w apps/content-authoring",
+    "postbuild:scrowl": "npm run build:web && npm run move:distributables",
+    "build:web": "npm run build -w web-publish",
     "start:web": "npm run start -w web-publish",
-    "postmake:scrowl": "npm run move:distributables",
-    "package:scrowl": "npm run package --workspace=apps/content-authoring",
-    "publish:scrowl": "npm run publish --workspace=apps/content-authoring"
+    "package:scrowl": "npm run package -w apps/content-authoring",
+    "publish:scrowl": "npm run publish -w apps/content-authoring"
   },
   "repository": "git+https://github.com/aubeOSG/git-actions-check.git",
   "author": "aubeOSG <caube@osg.ca>",
@@ -22,9 +22,6 @@
   },
   "homepage": "https://github.com/aubeOSG/git-actions-check#readme",
   "devDependencies": {
-    "@parcel/packager-ts": "^2.4.1",
-    "@parcel/transformer-sass": "^2.4.1",
-    "@parcel/transformer-typescript-types": "^2.4.1",
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
     "chalk": "^5.0.1",
@@ -35,12 +32,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
     "fs-extra": "^10.0.1",
-    "parcel": "^2.4.1",
-    "postcss": "^8.4.12",
-    "postcss-import": "^14.1.0",
-    "postcss-modules": "^4.3.1",
     "prettier": "^2.6.2",
-    "rimraf": "^3.0.2",
     "typescript": "^4.6.3"
   },
   "workspaces": [
