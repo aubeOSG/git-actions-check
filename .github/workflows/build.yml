@@ -31,7 +31,5 @@ jobs:
             ${{ runner.os }}-
       - name: Install Dependencies
         run: npm install
-      - name: update npm
-        run: npm install -g npm@latest
       - name: Build
-        run: npm run make:scrowl
+        run: npm run build:scrowl

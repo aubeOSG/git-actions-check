@@ -2,11 +2,12 @@ import React from 'react'
 import styles from './styles.module.scss'
 
 export const Route = '/'
+export const Name = 'Home'
 
-export const Page = () => {
+export const Element = () => {
   return (
     <div className={styles.container}>
-      <h1>Home Page</h1>
+      <h1>{Name} Page</h1>
       <div>
         <a href="./content_authoring.dmg">Download App (MAC)</a>
       </div>
@@ -16,5 +17,5 @@ export const Page = () => {
 
 export default {
   Route,
-  Page,
+  Element,
 }

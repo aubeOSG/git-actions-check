@@ -1,30 +1,26 @@
 import React from 'react'
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom'
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import pageHome from '../../pages/home/index'
 
-const basename = '/git-actions-check'
+const basename = '/'
+const pages = [pageHome]
 
-const ReRoute = () => {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Navigate to={basename} />} />
-      </Routes>
-    </Router>
-  )
+const createAppRoutes = () => {
+  return pages.map((page, index) => {
+    return (
+      <Route key={index} path={`${page.Route}`} element={<page.Element />} />
+    )
+  })
 }
 
-const AppRoutes = () => {
+export const App = () => {
+  const AppRoutes = createAppRoutes()
+
   return (
-    <Router basename={basename}>
+    <Router>
       <main>
         <Routes>
-          <Route path={`${pageHome.Route}`} element={<pageHome.Page />} />
+          {AppRoutes}
           <Route path="*" element={<Navigate to={basename} />} />
         </Routes>
       </main>
@@ -32,18 +28,6 @@ const AppRoutes = () => {
   )
 }
 
-export const getApp = () => {
-  const pathname = window.location.pathname
-  const isReRouted = pathname === '/'
-
-  return {
-    Routes: () => {
-      return isReRouted ? <ReRoute /> : <AppRoutes />
-    },
-    isReRouted,
-  }
-}
-
 export default {
-  getApp,
+  App,
 }
