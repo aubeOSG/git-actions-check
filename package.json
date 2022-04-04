@@ -10,7 +10,7 @@
     "build:scrowl": "npm run make -w apps/content-authoring",
     "postbuild:scrowl": "npm run build:web && npm run move:distributables",
     "build:web": "npm run build -w web-publish",
-    "prestart:web": "npm run clean -w web-publish && npm run build:scrowl && npm run move:distributables",
+    "prestart:web": "npm run clean -w web-publish && npm run make -w apps/content-authoring && npm run move:distributables",
     "start:web": "npm run start -w web-publish",
     "package:scrowl": "npm run package -w apps/content-authoring",
     "publish:scrowl": "npm run publish -w apps/content-authoring"
