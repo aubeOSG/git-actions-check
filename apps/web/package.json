@@ -8,6 +8,7 @@
     "clean": "rimraf dist && rimraf ../.parcel-cache",
     "prebuild": "npm run clean",
     "build": "parcel build --no-cache --public-url ../git-actions-check",
+    "prestart": "npm run clean",
     "start": "parcel serve --open",
     "predeploy": "npm run build"
   },
