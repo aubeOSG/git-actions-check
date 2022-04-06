@@ -1,5 +1,5 @@
 {
-  "name": "web-publish",
+  "name": "web",
   "version": "1.0.0",
   "description": "",
   "source": "./src/index.html",
@@ -14,7 +14,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aubeOSG/git-actions-check.git",
-    "directory": "web-publish"
+    "directory": "web"
   },
   "author": "",
   "license": "MIT",
