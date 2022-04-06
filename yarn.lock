@@ -1699,25 +1699,15 @@
   "resolved" "file:apps/content-authoring"
   "version" "1.0.0"
   dependencies:
-    "assert" "^2.0.0"
     "electron-debug" "^3.2.0"
     "electron-devtools-installer" "^3.2.0"
     "electron-reload" "^2.0.0-alpha.1"
     "electron-squirrel-startup" "^1.0.0"
-    "events" "^3.3.0"
-    "https-browserify" "^1.0.0"
-    "os-browserify" "^0.3.0"
     "path-browserify" "^1.0.1"
-    "process" "^0.11.10"
-    "querystring-es3" "^0.2.1"
     "react" "^18.0.0"
     "react-dom" "^18.0.0"
     "react-router-dom" "^6.3.0"
-    "stream-browserify" "^3.0.0"
-    "stream-http" "^3.2.0"
     "typescript" "^4.6.3"
-    "url" "^0.11.0"
-    "util" "^0.12.4"
 
 "core-js-pure@^3.20.2":
   "integrity" "sha512-12VZfFIu+wyVbBebyHmRTuEE/tZrB4tJToWcwAMcsp3h4+sHR+fMJWbKpYiCRWlhFBq+KNyO8rIV9rTkeVmznQ=="
@@ -5110,8 +5100,8 @@
   "resolved" "https://registry.npmjs.org/weak-lru-cache/-/weak-lru-cache-1.2.2.tgz"
   "version" "1.2.2"
 
-"web-publish@file:/Users/chrisaube/Documents/GitHub/git-actions-check/web-publish":
-  "resolved" "file:web-publish"
+"web@file:/Users/chrisaube/Documents/GitHub/git-actions-check/apps/web":
+  "resolved" "file:apps/web"
   "version" "1.0.0"
   dependencies:
     "react" "^18.0.0"
