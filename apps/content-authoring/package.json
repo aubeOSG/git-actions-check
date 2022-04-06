@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "clean": "rimraf dist && rimraf ../.parcel-cache && rimraf release/build",
+    "clean": "rimraf dist && rimraf ../.parcel-cache && rimraf release/build && rimraf release/app",
     "prebuild": "npm run clean",
     "build": "parcel build --no-cache --no-content-hash --no-source-maps --public-url ../dist",
     "start:frontend": "parcel serve --target frontend --no-cache --port 5001",
@@ -14,9 +14,9 @@
     "prestart": "npm run clean",
     "start": "cross-env NODE_ENV=development PORT=5001 concurrently \"npm run start:frontend\" \"npm run start:backend\" \"npm run watch:backend\"",
     "postinstall": "electron-builder install-app-deps",
-    "prepackage": "npm run build",
     "package:test": "electron-builder build --dir",
     "postpackage:test": "npx asar extract release/build/mac/Scrowl.app/Contents/Resources/app.asar release/app",
+    "prepackage": "npm run build",
     "package": "electron-builder build"
   },
   "main": "./dist/main.js",

@@ -10,7 +10,8 @@
     "build:scrowl": "npm run build -w apps/content-authoring",
     "package:scrowl": "npm run package -w apps/content-authoring",
     "build:web": "npm run build -w web",
-    "start:web": "concurrently \"npm run start -w web\" \"wait-on http://localhost:1234 && npm run move:app-packages\""
+    "start:web": "concurrently \"npm run start -w web\" \"wait-on http://localhost:1234 && npm run move:app-packages\"",
+    "deploy": "npm run package:scrowl && npm run build:web && npm run move:app-packages"
   },
   "repository": "git+https://github.com/aubeOSG/git-actions-check.git",
   "author": "aubeOSG <caube@osg.ca>",
