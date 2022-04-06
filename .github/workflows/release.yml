@@ -31,4 +31,4 @@ jobs:
       - name: Publish Distributables
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npm run publish:scrowl
+        run: npm run package:scrowl

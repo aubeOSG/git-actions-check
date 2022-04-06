@@ -5,15 +5,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "move:distributables": "node ./scripts/pipeline/cmd.move-distributables.js",
+    "move:app-packages": "node ./scripts/pipeline/cmd.move-app-packages.js",
     "start:scrowl": "npm run start -w apps/content-authoring",
-    "build:scrowl": "npm run make -w apps/content-authoring",
-    "postbuild:scrowl": "npm run build:web && npm run move:distributables",
-    "build:web": "npm run build -w web-publish",
-    "prestart:web": "npm run clean -w web-publish && npm run make -w apps/content-authoring && npm run move:distributables",
-    "start:web": "npm run start -w web-publish",
+    "build:scrowl": "npm run build -w apps/content-authoring",
     "package:scrowl": "npm run package -w apps/content-authoring",
-    "publish:scrowl": "npm run publish -w apps/content-authoring"
+    "build:web": "npm run build -w web",
+    "start:web": "concurrently \"npm run start -w web\" \"wait-on http://localhost:1234 && npm run move:app-packages\"",
+    "deploy": "npm run package:scrowl && npm run build:web && npm run move:app-packages"
   },
   "repository": "git+https://github.com/aubeOSG/git-actions-check.git",
   "author": "aubeOSG <caube@osg.ca>",
@@ -26,6 +24,7 @@
     "@typescript-eslint/eslint-plugin": "^5.17.0",
     "@typescript-eslint/parser": "^5.17.0",
     "chalk": "^5.0.1",
+    "concurrently": "^7.1.0",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.4",
@@ -34,10 +33,10 @@
     "eslint-plugin-react": "^7.29.4",
     "fs-extra": "^10.0.1",
     "prettier": "^2.6.2",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.3",
+    "wait-on": "^6.0.1"
   },
   "workspaces": [
-    "apps/*",
-    "web-publish"
+    "apps/*"
   ]
 }

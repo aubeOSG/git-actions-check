@@ -1,5 +1,5 @@
 {
-  "name": "web-publish",
+  "name": "web",
   "version": "1.0.0",
   "description": "",
   "source": "./src/index.html",
@@ -8,13 +8,13 @@
     "clean": "rimraf dist && rimraf ../.parcel-cache",
     "prebuild": "npm run clean",
     "build": "parcel build --no-cache --public-url ../git-actions-check",
-    "start": "parcel serve --open",
-    "predeploy": "npm run build"
+    "prestart": "npm run clean",
+    "start": "parcel serve --open"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/aubeOSG/git-actions-check.git",
-    "directory": "web-publish"
+    "directory": "web"
   },
   "author": "",
   "license": "MIT",
