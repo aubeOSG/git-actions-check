@@ -11,9 +11,11 @@ const copy = () => {
 
   for (let file in fileMap) {
     contents = fs.getFile(file)
-    dest = fileMap[file].dest
 
-    fs.copyFile(file, dest)
+    if (contents) {
+      dest = fileMap[file].dest
+      fs.copyFile(file, dest)
+    }
   }
 }
 

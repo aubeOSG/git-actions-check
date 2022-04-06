@@ -4,20 +4,27 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "clean": "rimraf dist && rimraf ../.parcel-cache",
+    "clean": "rimraf dist && rimraf ../.parcel-cache && rimraf release/build",
     "prebuild": "npm run clean",
-    "build": "parcel build --no-cache",
+    "build": "parcel build --no-cache --no-content-hash --no-source-maps --public-url ../dist",
     "start:frontend": "parcel serve --target frontend --no-cache --port 5001",
     "prestart:backend": "parcel build --target backend --target preload --no-cache",
     "start:backend": "wait-on http://localhost:5001 && nodemon --exec electron ./dist/main.js",
-    "watch:backend": "parcel watch --target backend --target preload --no-cache --port 5000",
+    "watch:backend": "parcel watch ./src/main/index.ts ./src/main/preload.ts --no-cache --port 5000",
     "prestart": "npm run clean",
-    "start": "cross-env NODE_ENV=development PORT=5001 concurrently \"npm run start:frontend\" \"npm run start:backend\" \"npm run watch:backend\""
+    "start": "cross-env NODE_ENV=development PORT=5001 concurrently \"npm run start:frontend\" \"npm run start:backend\" \"npm run watch:backend\"",
+    "postinstall": "electron-builder install-app-deps",
+    "prepackage": "npm run build",
+    "package:test": "electron-builder build --dir",
+    "postpackage:test": "npx asar extract release/build/mac/Scrowl.app/Contents/Resources/app.asar release/app",
+    "package": "electron-builder build"
   },
-  "backend": "dist/main.js",
-  "preload": "dist/preload.js",
-  "frontend": "dist/renderer.html",
+  "main": "./dist/main.js",
+  "backend": "./dist/main.js",
+  "preload": "./dist/preload.js",
+  "frontend": "./dist/renderer.html",
   "targets": {
+    "main": false,
     "backend": {
       "context": "electron-main",
       "source": "./src/main/index.ts",
@@ -55,14 +62,28 @@
   },
   "homepage": "https://github.com/aubeOSG/git-actions-check/apps/content-authoring#readme",
   "dependencies": {
+    "assert": "^2.0.0",
     "electron-debug": "^3.2.0",
+    "electron-devtools-installer": "^3.2.0",
+    "electron-reload": "^2.0.0-alpha.1",
     "electron-squirrel-startup": "^1.0.0",
+    "events": "^3.3.0",
+    "https-browserify": "^1.0.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
+    "process": "^0.11.10",
+    "querystring-es3": "^0.2.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.3.0",
-    "typescript": "^4.6.3"
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "typescript": "^4.6.3",
+    "url": "^0.11.0",
+    "util": "^0.12.4"
   },
   "devDependencies": {
+    "asar": "^3.1.0",
     "@parcel/packager-ts": "^2.4.1",
     "@parcel/runtime-react-refresh": "^2.4.1",
     "@parcel/transformer-sass": "^2.4.1",
@@ -74,9 +95,7 @@
     "cross-env": "^7.0.3",
     "electron": "18.0.1",
     "electron-builder": "^22.14.13",
-    "electron-devtools-installer": "^3.2.0",
     "electron-notarize": "^1.2.1",
-    "electron-reload": "^2.0.0-alpha.1",
     "nodemon": "^2.0.15",
     "parcel": "^2.4.1",
     "postcss": "^8.4.12",
@@ -86,48 +105,31 @@
     "wait-on": "^6.0.1"
   },
   "build": {
+    "appId": "org.eebos.scrowl",
     "productName": "Scrowl",
-    "appId": "org.EEBOS.scrowl",
-    "asar": true,
-    "asarUnpack": "**\\*.{node,dll}",
     "files": [
-      "dist",
-      "node_modules",
+      "dist/*",
+      "node_modules/**/*",
+      "../../node_modules/**/*",
       "package.json"
     ],
-    "afterSign": "scripts/pipeline/notarize.js",
-    "mac": {
-      "target": {
-        "target": "default",
-        "arch": [
-          "x64"
-        ]
-      },
-      "type": "distribution",
-      "hardenedRuntime": true
-    },
     "dmg": {
       "contents": [
         {
-          "x": 130,
-          "y": 220
+          "x": 110,
+          "y": 150
         },
         {
-          "x": 410,
-          "y": 220,
+          "x": 240,
+          "y": 150,
           "type": "link",
           "path": "/Applications"
         }
       ]
     },
     "directories": {
-      "app": "release/app",
       "output": "release/build"
     },
-    "publish": {
-      "provider": "github",
-      "owner": "aubeOSG",
-      "repo": "git-actions-check"
-    }
+    "publish": null
   }
 }

@@ -6,7 +6,7 @@
 import path from 'path'
 import { app, BrowserWindow, shell, ipcMain } from 'electron'
 import electronReload from 'electron-reload'
-import installExtension, { REACT_DEVELOPER_TOOLS, REDUX_DEVTOOLS } from 'electron-devtools-installer'
+import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer'
 import { resolveHtmlPath } from './util'
 
 let mainWindow: BrowserWindow | null = null
@@ -16,11 +16,6 @@ ipcMain.on('ipc-example', async (event, arg) => {
   console.log(msgTemplate(arg))
   event.reply('ipc-example', msgTemplate('pong'))
 })
-
-if (process.env.NODE_ENV === 'production') {
-  const sourceMapSupport = require('source-map-support')
-  sourceMapSupport.install()
-}
 
 const isDevelopment =
   process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true'
@@ -38,7 +33,6 @@ if (isDevelopment) {
 const installExtensions = () => {
   return Promise.all([
     installExtension(REACT_DEVELOPER_TOOLS),
-    // installExtension(REDUX_DEVTOOLS)
   ])
 }
 
@@ -66,8 +60,8 @@ const createWindow = async () => {
       preload: path.join(__dirname, 'preload.js'),
     },
   })
-
-  mainWindow.loadURL(resolveHtmlPath('index.html'))
+  
+  mainWindow.loadURL(resolveHtmlPath('renderer.html'))
 
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {
