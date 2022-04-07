@@ -2,7 +2,7 @@
   "compilerOptions": {
     "declaration": true,
     "target": "ESNEXT",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "module": "CommonJS",
     "allowJs": false,
     "sourceMap": true,
